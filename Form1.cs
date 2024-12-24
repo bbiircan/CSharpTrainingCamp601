@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CSharpTrainingCamp601.Entities;
+using CSharpTrainingCamp601.Services;
+using System;
 using System.Windows.Forms;
 
 namespace CSharpTrainingCamp601
@@ -15,6 +10,22 @@ namespace CSharpTrainingCamp601
         public Form1()
         {
             InitializeComponent();
+        }
+
+        CustomerOperations customerOperations = new CustomerOperations();
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            var customer = new Customer()
+            {
+                CustomerName = txtCustomerName.Text,
+                CustomerSurname = txtCustomerSurname.Text,
+                CustomerCity = txtCustomerCity.Text,
+                Balance = decimal.Parse(txtBalance.Text),
+                TotalShopping = int.Parse(txtTotalShopping.Text),
+            };
+
+            customerOperations.AddCustomer(customer);
+            MessageBox.Show("Customer successfully added.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
